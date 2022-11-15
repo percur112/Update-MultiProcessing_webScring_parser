@@ -4,7 +4,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-# Logger configuration
 handler = logging.StreamHandler()
 handler.setLevel(logging.DEBUG)
 
@@ -15,8 +14,6 @@ logger.addHandler(handler)
 scraped_count = 1
 
 
-
-# Function to collect (crawl) all pertinent URLs on the page
 def get_urls(html):
     soup = BeautifulSoup(html, 'html.parser')
 
