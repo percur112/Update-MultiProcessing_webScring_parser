@@ -9,16 +9,16 @@ from bs4 import BeautifulSoup
 from parse_funcs import parse, get_urls
 
 
-# Structure of URL to scrape - it has a letter and page number, which are not constant
+
 URL = 'https://www.healthgrades.com/affiliated-physicians/{letter}-{pageNo}'
 
-# Since this website has sections for each letter, we need a list of all lowercase letters
+
 LETTERS = [letter for letter in string.ascii_lowercase]
 
 
 scraped_counter = 0
 
-# Logger configuration (set level to DEBUG)
+
 handler = logging.StreamHandler()
 handler.setLevel(logging.DEBUG)
 
@@ -64,11 +64,11 @@ async def loop_through(session, l):
 
                         finish = time()
                         
-                        # Show the scraping speed and overall counter
+                       
                         logger.debug('Scraped: %s\tSpeed: %s URLs/second\tTotal: %s', len(
                             _urls), round(len(_urls)/(finish-start), 2), scraped_counter)
 
-                        # Clear the URLs list because those URLs were scraped
+                       
                         _urls.clear()
 
                         logger.debug('URLs list has been cleared: %s', _urls)
@@ -94,7 +94,7 @@ async def main1():
         logger.debug('ROUND NUMBER %s\nPARSING from %s to %s', i, left, right)
 
         try:
-            # Creating safe session, which will close
+           
             async with aiohttp.ClientSession() as session:
                 await asyncio.gather(*(loop_through(session, letter) for letter in LETTERS[left:right]))
                 
